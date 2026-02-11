@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlayWard - AI Activity Prompt Generator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Single Header (shown on all pages except landing) -->
+    <header class="header" id="main-header">
+      <div class="header-logo">
+        <img
+          src="images/Logo.png"
+          alt="PlayWard Logo"
+          class="header-logo-img"
+        />
+        <span class="logo-text">PlayWard</span>
+      </div>
+      <nav class="header-nav">
+        <a href="#">About Us</a>
+        <span>|</span>
+        <a href="#">Support</a>
+      </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-content" id="main-content">
+      <!-- Page 1: Landing Page -->
+      <section class="page active" id="page-landing">
+        <div class="landing-container">
+          <div class="landing-content">
+            <img
+              src="images/Logo.png"
+              alt="PlayWard Logo"
+              class="landing-logo"
+            />
+            <h1 class="landing-title">PlayWard</h1>
+            <p class="landing-tagline">
+              PlayWard is a fun, personalized activity platform for kids in
+              pediatric care
+            </p>
+            <button
+              class="btn btn-primary btn-large"
+              onclick="showPage('instructions')"
+            >
+              Create
+            </button>
+          </div>
+          <div class="landing-mascot">
+            <img src="images/girljumpleft.png" alt="PlayWard Mascot" />
+          </div>
+        </div>
+        <footer class="grass-footer">
+          <img src="images/grass.png" alt="" />
+        </footer>
+      </section>
+
+      <!-- Page 2: Instructions Page -->
+      <section class="page" id="page-instructions">
+        <div class="page-wrapper">
+          <div class="page-content">
+            <h1 class="page-title-large">
+              Creating with PlayWard is as easy as 1, 2, 3.
+            </h1>
+            <p class="page-subtitle-small">
+              Ready to create a great prompt? Follow the steps below and choose
+              Quick Create to save time with fewer settings, or select
+              Customized Prompt for a personalized result that requires a bit
+              more effort.
+            </p>
+
+            <div class="instructions-layout">
+              <div class="instructions-mascot">
+                <img src="images/girljumpright.png" alt="PlayWard Mascot" />
+              </div>
+              <div class="instructions-steps">
+                <div class="step">
+                  <span class="step-number">1</span>
+                  <div class="step-content">
+                    <p>
+                      Answer the on-screen questions to tailor the prompt’s
+                      specific goals and features.
+                    </p>
+                  </div>
+                </div>
+                <div class="step">
+                  <span class="step-number">2</span>
+                  <div class="step-content">
+                    <p>
+                      Double-check your settings. Use the icons on the left to
+                      edit any details, or hit “Generate” if you're ready.
+                    </p>
+                  </div>
+                </div>
+                <div class="step">
+                  <span class="step-number">3</span>
+                  <div class="step-content">
+                    <p>
+                      Click “Copy and Open” to grab the text and automatically
+                      open the best AI for the job. Paste the prompt into the AI
+                      chat and send. Since AI can be unpredictable, review the
+                      results and feel free to re-run the prompt if it needs a
+                      second pass.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ready-section">
+              <h2>Ready to start generating?</h2>
+              <div class="button-group">
+                <button class="btn btn-outline" onclick="quickCreate()">
+                  Quick Create
+                </button>
+                <button
+                  class="btn btn-primary"
+                  onclick="showPage('activity-select')"
+                >
+                  Customize prompt
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="progress-breadcrumb" id="breadcrumb-instructions"></div>
+        </div>
+      </section>
+
+      <!-- Page 3: Activity Selection -->
+      <section class="page" id="page-activity-select">
+        <div class="page-wrapper">
+          <div class="page-content">
+            <h1 class="page-title">Select a Prompt Category</h1>
+            <p class="page-subtitle">
+              This is where you select the type of activity for which to
+              generate a prompt for! Simply select one of the icons below to
+              choose the activity type move onto the next page.
+            </p>
+
+            <div class="activity-grid-new">
+              <div
+                class="activity-item"
+                data-activity="coloring"
+                onclick="selectActivity('coloring')"
+              >
+                <div class="activity-circle">
+                  <img src="images/coloringpage.png" alt="Coloring Page" />
+                </div>
+                <span class="activity-label">Coloring Page</span>
+              </div>
+              <div
+                class="activity-item"
+                data-activity="trivia"
+                onclick="selectActivity('trivia')"
+              >
+                <div class="activity-circle">
+                  <img src="images/trivia.png" alt="Trivia" />
+                </div>
+                <span class="activity-label">Trivia</span>
+              </div>
+              <div
+                class="activity-item"
+                data-activity="hidden-objects"
+                onclick="selectActivity('hidden-objects')"
+              >
+                <div class="activity-circle">
+                  <img src="images/hiddenobject.png" alt="Hidden Objects" />
+                </div>
+                <span class="activity-label">Hidden Objects</span>
+              </div>
+              <div
+                class="activity-item"
+                data-activity="story"
+                onclick="selectActivity('story')"
+              >
+                <div class="activity-circle">
+                  <img src="images/shortstory.png" alt="Short Story" />
+                </div>
+                <span class="activity-label">Short Story</span>
+              </div>
+              <div
+                class="activity-item"
+                data-activity="activity-game"
+                onclick="selectActivity('activity-game')"
+              >
+                <div class="activity-circle">
+                  <img src="images/activity.png" alt="Game" />
+                </div>
+                <span class="activity-label">Game (activity)</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="progress-breadcrumb"
+            id="breadcrumb-activity-select"
+          ></div>
+        </div>
+      </section>
+
+      <!-- Page 4: Theme Type Selection -->
+      <section class="page" id="page-theme-type">
+        <div class="page-wrapper">
+          <div class="page-content page-with-sidebar">
+            <div class="dynamic-sidebar" id="sidebar-theme-type">
+              <!-- Dynamic sidebar content based on activity selection -->
+            </div>
+            <div class="page-main">
+              <h1 class="page-title">Select a Theme Type</h1>
+              <p class="page-subtitle">
+                Here you can choose whether you want to use one of our default
+                themes or type in your own custom theme! Select one to move
+                forward.
+              </p>
+
+              <div class="theme-type-grid">
+                <div
+                  class="theme-type-item"
+                  onclick="selectThemeType('default')"
+                >
+                  <div class="theme-type-box">
+                    <img src="images/defaulttheme.png" alt="Default Themes" />
+                  </div>
+                  <span class="theme-type-label">Default Themes</span>
+                </div>
+                <div
+                  class="theme-type-item"
+                  onclick="selectThemeType('custom')"
+                >
+                  <div class="theme-type-box">
+                    <img src="images/customtheme.png" alt="Custom Theme" />
+                  </div>
+                  <span class="theme-type-label">Custom Theme</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="progress-breadcrumb" id="breadcrumb-theme-type"></div>
+        </div>
+      </section>
+
+      <!-- Page 5a: Default Theme Selection -->
+      <section class="page" id="page-default-themes">
+        <div class="page-wrapper">
+          <div class="page-content page-with-sidebar">
+            <div class="dynamic-sidebar" id="sidebar-default-themes">
+              <!-- Dynamic sidebar content -->
+            </div>
+            <div class="page-main">
+              <h1 class="page-title">Select a Default Theme</h1>
+              <p class="page-subtitle">
+                Select one of our default themes from the icons below. If you
+                decide you want to create a custom theme instead, please select
+                the Customize icon on the left side of the page.
+              </p>
+
+              <div class="theme-grid-new">
+                <div
+                  class="theme-item"
+                  data-theme="superheroes"
+                  onclick="selectTheme('superheroes')"
+                >
+                  <div class="theme-circle">
+                    <img src="images/superhero.png" alt="Superheroes" />
+                  </div>
+                  <span class="theme-label">Superheroes</span>
+                </div>
+                <div
+                  class="theme-item"
+                  data-theme="animals"
+                  onclick="selectTheme('animals')"
+                >
+                  <div class="theme-circle">
+                    <img src="images/animal.png" alt="Animals" />
+                  </div>
+                  <span class="theme-label">Animals</span>
+                </div>
+                <div
+                  class="theme-item"
+                  data-theme="nature"
+                  onclick="selectTheme('nature')"
+                >
+                  <div class="theme-circle">
+                    <img src="images/nature.png" alt="Nature" />
+                  </div>
+                  <span class="theme-label">Nature</span>
+                </div>
+                <div
+                  class="theme-item"
+                  data-theme="ocean"
+                  onclick="selectTheme('ocean')"
+                >
+                  <div class="theme-circle">
+                    <img src="images/ocean.png" alt="Ocean" />
+                  </div>
+                  <span class="theme-label">Ocean</span>
+                </div>
+                <div
+                  class="theme-item"
+                  data-theme="sports"
+                  onclick="selectTheme('sports')"
+                >
+                  <div class="theme-circle">
+                    <img src="images/sport.png" alt="Sports" />
+                  </div>
+                  <span class="theme-label">Sports</span>
+                </div>
+                <div
+                  class="theme-item"
+                  data-theme="space"
+                  onclick="selectTheme('space')"
+                >
+                  <div class="theme-circle">
+                    <img src="images/space.png" alt="Space" />
+                  </div>
+                  <span class="theme-label">Space</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="progress-breadcrumb" id="breadcrumb-default-themes"></div>
+        </div>
+      </section>
+
+      <!-- Page 5b: Custom Theme Input -->
+      <section class="page" id="page-custom-theme">
+        <div class="page-wrapper">
+          <div class="page-content page-with-sidebar">
+            <div class="dynamic-sidebar" id="sidebar-custom-theme">
+              <!-- Dynamic sidebar content -->
+            </div>
+            <div class="page-main">
+              <h1 class="page-title">Customize the Theme</h1>
+              <p class="page-subtitle">
+                Enter your custom theme name under "Specific Custom Theme"
+                below!<br /><br />If you would like to add a certain focus or
+                character to your theme as well, then type them in the spaces
+                provided below. One example of this is if you want your theme to
+                be "animals", and you want that theme to be "turtles".
+              </p>
+
+              <div class="custom-theme-form">
+                <div class="form-group">
+                  <label>Specific Custom Theme</label>
+                  <span class="hint">Example: cars, beach, summer, shapes</span>
+                  <input type="text" id="custom-theme-input" placeholder="" />
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Specific Theme Focus</label>
+                    <span class="hint">This is optional</span>
+                    <input type="text" id="theme-focus-input" placeholder="" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Specific Theme Character</label>
+                  <span class="hint">This is optional</span>
+                  <input
+                    type="text"
+                    id="theme-character-input"
+                    placeholder=""
+                  />
+                </div>
+                <div class="form-actions">
+                  <button class="btn btn-primary" onclick="saveCustomTheme()">
+                    Next
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="progress-breadcrumb" id="breadcrumb-custom-theme"></div>
+        </div>
+      </section>
+
+      <!-- Page 6: Personalization -->
+      <section class="page" id="page-personalization">
+        <div class="page-wrapper">
+          <div class="page-content page-with-sidebar">
+            <div class="dynamic-sidebar" id="sidebar-personalization">
+              <!-- Dynamic sidebar content -->
+            </div>
+            <div class="page-main">
+              <h1 class="page-title">Select a Personalization</h1>
+              <p class="page-subtitle">
+                This is where you can include any medical, diversity, or age
+                range considerations into your prompt. For example, if the
+                patient is arm being in a cast is something you wish to include
+                into the generated material, you would select the icon below.
+                All selections on this page are optional, and if you wish to
+                skip this page simply press the "Next" button.
+              </p>
+
+              <div class="personalization-content">
+                <div class="medical-section">
+                  <h3>
+                    Medical Considerations
+                    <i class="fa-solid fa-circle-info info-tooltip"></i>
+                  </h3>
+                  <div class="medical-grid-new">
+                    <div
+                      class="medical-item"
+                      data-medical="wheelchair"
+                      onclick="toggleMedical('wheelchair')"
+                    >
+                      <div class="medical-circle">
+                        <img src="images/wheelchair.png" alt="Wheelchair" />
+                      </div>
+                      <span>Wheelchair</span>
+                    </div>
+                    <div
+                      class="medical-item"
+                      data-medical="syringe"
+                      onclick="toggleMedical('syringe')"
+                    >
+                      <div class="medical-circle">
+                        <img src="images/syringe.png" alt="Syringe" />
+                      </div>
+                      <span>Syringe</span>
+                    </div>
+                    <div
+                      class="medical-item"
+                      data-medical="anxiety"
+                      onclick="toggleMedical('anxiety')"
+                    >
+                      <div class="medical-circle">
+                        <img src="images/anxiety.png" alt="Anxiety" />
+                      </div>
+                      <span>Anxiety</span>
+                    </div>
+                    <div
+                      class="medical-item"
+                      data-medical="surgery"
+                      onclick="toggleMedical('surgery')"
+                    >
+                      <div class="medical-circle">
+                        <img src="images/surgery.png" alt="Surgery" />
+                      </div>
+                      <span>Surgery</span>
+                    </div>
+                    <div
+                      class="medical-item"
+                      data-medical="cast"
+                      onclick="toggleMedical('cast')"
+                    >
+                      <div class="medical-circle">
+                        <img src="images/cast.png" alt="Cast" />
+                      </div>
+                      <span>Cast</span>
+                    </div>
+                    <div
+                      class="medical-item"
+                      data-medical="pain"
+                      onclick="toggleMedical('pain')"
+                    >
+                      <div class="medical-circle">
+                        <img src="images/Pain.png" alt="Pain" />
+                      </div>
+                      <span>Pain</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="dropdowns-row">
+                  <div class="form-group">
+                    <label
+                      >Age Range
+                      <i class="fa-solid fa-circle-info info-tooltip"></i
+                    ></label>
+                    <select id="age-range">
+                      <option value="">Select...</option>
+                      <option value="3-5">3-5 years</option>
+                      <option value="6-8">6-8 years</option>
+                      <option value="9-11">9-11 years</option>
+                      <option value="12-14">12-14 years</option>
+                      <option value="15-18">15-18 years</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label
+                      >Diversity Consideration
+                      <i class="fa-solid fa-circle-info info-tooltip"></i
+                    ></label>
+                    <select id="diversity-select">
+                      <option value="">Select...</option>
+                      <option value="multicultural">
+                        Multicultural representation
+                      </option>
+                      <option value="gender-inclusive">Gender-inclusive</option>
+                      <option value="accessibility">
+                        Visual accessibility
+                      </option>
+                      <option value="language">Simplified language</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-actions right">
+                  <button
+                    class="btn btn-primary"
+                    onclick="savePersonalization()"
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="progress-breadcrumb"
+            id="breadcrumb-personalization"
+          ></div>
+        </div>
+      </section>
+
+      <!-- Page 7: Activity Customization (Dynamic) -->
+      <section class="page" id="page-customization">
+        <div class="page-wrapper">
+          <div class="page-content page-with-sidebar">
+            <div class="dynamic-sidebar" id="sidebar-customization">
+              <!-- Dynamic sidebar content -->
+            </div>
+            <div class="page-main">
+              <h1 class="page-title" id="customization-title">
+                Activity Customization
+              </h1>
+              <p class="page-subtitle" id="customization-subtitle">
+                Select the style of the visuals on your final piece from one of
+                the icons below.
+              </p>
+
+              <div id="customization-content">
+                <!-- Dynamic content loaded by JavaScript -->
+              </div>
+            </div>
+          </div>
+          <div class="progress-breadcrumb" id="breadcrumb-customization"></div>
+        </div>
+      </section>
+
+      <!-- Page 8: Review Selections -->
+      <section class="page" id="page-review">
+        <div class="page-wrapper">
+          <div class="page-content page-with-sidebar">
+            <div class="dynamic-sidebar" id="sidebar-review">
+              <!-- Dynamic sidebar content -->
+            </div>
+            <div class="page-main">
+              <h1 class="page-title">Review Selections</h1>
+              <p class="page-subtitle">
+                Review your choices from the previous selection pages. If you
+                are happy with your choices, select the Generate Prompt button
+                to review the final prompt. If you need to make adjustments to
+                your choices, select the Edit Choices button to navigate to the
+                previous page.
+              </p>
+
+              <div class="review-content">
+                <div class="review-box">
+                  <div id="review-summary">
+                    <!-- Dynamic content -->
+                  </div>
+                </div>
+                <div class="review-actions">
+                  <button class="btn btn-outline" onclick="editChoices()">
+                    Edit Choices
+                  </button>
+                  <button class="btn btn-primary" onclick="generatePrompt()">
+                    Generate Prompt
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="progress-breadcrumb" id="breadcrumb-review"></div>
+        </div>
+      </section>
+
+      <!-- Page 9: Final Prompt -->
+      <section class="page" id="page-final">
+        <div class="page-wrapper">
+          <div class="page-content">
+            <h1 class="page-title">Review Final Prompt</h1>
+            <p class="page-subtitle">
+              When your prompt is generated, select the "Copy and Open" button
+              which will copy the prompt as well as open the most relevant AI
+              based on your selections. From there, simply select the AI's chat
+              function and paste the prompt. Once you hit the send button, the
+              AI will generate your activity! Make sure to check the final
+              product for accuracy as you may need to repeat the prompt a couple
+              of times for the AI to get it right.
+            </p>
+
+            <div class="final-prompt-section">
+              <h3>Final Prompt</h3>
+              <div class="prompt-box">
+                <p id="generated-prompt">
+                  Your generated prompt will appear here...
+                </p>
+              </div>
+              <button class="btn btn-primary btn-copy" onclick="copyPrompt()">
+                Copy
+              </button>
+            </div>
+
+            <div class="ai-platforms-row">
+              <div
+                class="platform-icon"
+                onclick="openInAI('chatgpt')"
+                title="Open in ChatGPT"
+              >
+                <i class="fa-solid fa-robot"></i>
+              </div>
+              <div
+                class="platform-icon"
+                onclick="openInAI('gemini')"
+                title="Open in Gemini"
+              >
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <div
+                class="platform-icon"
+                onclick="openInAI('claude')"
+                title="Open in Claude"
+              >
+                <i class="fa-solid fa-message"></i>
+              </div>
+            </div>
+          </div>
+          <div class="progress-breadcrumb" id="breadcrumb-final"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Copy Notification -->
+    <div class="copy-notification" id="copy-notification"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
