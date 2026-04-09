@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desktop - Quick Create Main Choice</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .activity-grid-new {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 50px;
+        margin-top: 40px;
+        max-width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .activity-grid-new .activity-item {
+        flex: 0 0 auto;
+        width: 180px;
+      }
+      .activity-grid-new .activity-circle {
+        width: 160px;
+        height: 160px;
+        margin: 0 auto 12px;
+      }
+      .activity-grid-new .activity-circle img {
+        width: 90px;
+        height: 90px;
+      }
+      .activity-grid-new .activity-label {
+        font-size: 18px;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="main-content with-header">
+      <section class="page active">
+        <div class="page-wrapper">
+          <div class="page-content">
+            <h1 class="page-title">Select a Prompt Template Category</h1>
+            <p class="page-subtitle">
+              Select the type of activity you want to generate a prompt for!
+              Simply select one of the icons below to choose the activity and
+              move onto the next page.
+            </p>
+
+            <div class="activity-grid-new">
+              <div
+                class="activity-item"
+                data-activity="coloring"
+                onclick="selectQCActivity('coloring')"
+              >
+                <div class="activity-circle">
+                  <img src="images/coloringpage.png" alt="Coloring Page" />
+                </div>
+                <span class="activity-label">Coloring Page</span>
+              </div>
+              <div
+                class="activity-item"
+                data-activity="spot-the-difference"
+                onclick="selectQCActivity('spot-the-difference')"
+              >
+                <div class="activity-circle">
+                  <img src="images/spotdiff.png" alt="Spot the Differences" />
+                </div>
+                <span class="activity-label">Spot the Differences</span>
+              </div>
+              <div
+                class="activity-item"
+                data-activity="hidden-objects"
+                onclick="selectQCActivity('hidden-objects')"
+              >
+                <div class="activity-circle">
+                  <img src="images/hiddenobject.png" alt="Hidden Objects" />
+                </div>
+                <span class="activity-label">Hidden Objects</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="breadcrumb-with-back">
+            <div class="progress-breadcrumb"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="shared.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {});
+
+      function selectQCActivity(activity) {
+        document
+          .querySelectorAll(".activity-item")
+          .forEach((i) => i.classList.remove("selected"));
+        document
+          .querySelector(`.activity-item[data-activity="${activity}"]`)
+          .classList.add("selected");
+        qcData.activity = activity;
+        saveQCData();
+        setTimeout(() => goToPage("qc-theme.html"), 300);
+      }
+    </script>
+  </body>
+</html>

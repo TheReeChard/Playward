@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlayWard - Personalization</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .medical-grid-new {
+        display: grid;
+        grid-template-columns: repeat(4, 160px);
+        justify-content: center;
+        gap: 30px 40px;
+        margin-bottom: 35px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .medical-grid-new .medical-item {
+        flex: 0 0 auto;
+        width: 160px;
+        text-align: center;
+      }
+      .medical-diamond {
+        width: 110px;
+        height: 110px;
+        margin: 0 auto 14px;
+      }
+      .medical-diamond img {
+        width: 55px;
+        height: 55px;
+      }
+      .medical-item span {
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .tooltip-wrapper {
+        position: relative;
+        display: inline-block;
+      }
+      .tooltip-wrapper .tooltip-box {
+        visibility: hidden;
+        opacity: 0;
+        background-color: #333;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: left;
+        border-radius: 8px;
+        padding: 10px 14px;
+        width: 280px;
+        position: absolute;
+        top: 50%;
+        left: calc(100% + 10px);
+        transform: translateY(-50%);
+        z-index: 100;
+        transition: opacity 0.2s ease;
+        pointer-events: none;
+      }
+      .tooltip-wrapper .tooltip-box::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 100%;
+        transform: translateY(-50%);
+        border: 6px solid transparent;
+        border-right-color: #333;
+      }
+      .tooltip-wrapper:hover .tooltip-box,
+      .tooltip-wrapper.active .tooltip-box {
+        visibility: visible;
+        opacity: 1;
+      }
+      .info-tooltip {
+        cursor: pointer;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="main-content with-header">
+      <section class="page active">
+        <div class="page-wrapper">
+          <div class="page-content page-with-sidebar">
+            <div class="dynamic-sidebar" id="dynamic-sidebar"></div>
+            <div class="page-main">
+              <h1 class="page-title">Select a Personalization</h1>
+              <p class="page-subtitle">
+                This is where you can include any medical consideration into
+                your prompt. For example, if the patient's arm is in a cast, you
+                can select the icon below to include that within the play
+                material. All selections on this page are optional, and if you
+                wish to skip this page simply press the "Skip" button. You can
+                also select multiple considerations to be included. Once you
+                have all your selections made click the "Next" button to
+                continue.
+              </p>
+
+              <div class="personalization-content">
+                <div class="medical-section">
+                  <h3>
+                    Medical Considerations
+                    <span
+                      class="tooltip-wrapper"
+                      onclick="this.classList.toggle('active')"
+                      ><i class="fa-solid fa-circle-info info-tooltip"></i
+                      ><span class="tooltip-box"
+                        >Select any medical considerations that you want
+                        represented for the activity being generated in order to
+                        ensure inclusivity and patient safety. Please select all
+                        that apply.</span
+                      ></span
+                    >
+                  </h3>
+                  <div class="medical-grid-new">
+                    <div
+                      class="medical-item"
+                      data-medical="wheelchair"
+                      onclick="toggleMedical('wheelchair')"
+                    >
+                      <div class="medical-diamond">
+                        <img src="images/wheelchair.png" alt="Wheelchair" />
+                      </div>
+                      <span>Wheelchair</span>
+                    </div>
+                    <div
+                      class="medical-item"
+                      data-medical="syringe"
+                      onclick="toggleMedical('syringe')"
+                    >
+                      <div class="medical-diamond">
+                        <img src="images/syringe.png" alt="Syringe" />
+                      </div>
+                      <span>Syringe</span>
+                    </div>
+                    <div
+                      class="medical-item"
+                      data-medical="pain"
+                      onclick="toggleMedical('pain')"
+                    >
+                      <div class="medical-diamond">
+                        <img src="images/pain.png" alt="Pain" />
+                      </div>
+                      <span>Pain</span>
+                    </div>
+                    <div
+                      class="medical-item"
+                      data-medical="iv"
+                      onclick="toggleMedical('iv')"
+                    >
+                      <div class="medical-diamond">
+                        <img src="images/iv.png" alt="IV" />
+                      </div>
+                      <span>IV</span>
+                    </div>
+                    <div
+                      class="medical-item"
+                      data-medical="surgery"
+                      onclick="toggleMedical('surgery')"
+                    >
+                      <div class="medical-diamond">
+                        <img src="images/surgery.png" alt="Surgery" />
+                      </div>
+                      <span>Surgery</span>
+                    </div>
+                    <div
+                      class="medical-item"
+                      data-medical="halo"
+                      onclick="toggleMedical('halo')"
+                    >
+                      <div class="medical-diamond">
+                        <img src="images/halo.png" alt="Halo" />
+                      </div>
+                      <span>Halo</span>
+                    </div>
+                    <div
+                      class="medical-item"
+                      data-medical="anxiety"
+                      onclick="toggleMedical('anxiety')"
+                    >
+                      <div class="medical-diamond">
+                        <img src="images/anxiety.png" alt="Anxiety" />
+                      </div>
+                      <span>Anxiety</span>
+                    </div>
+                    <div
+                      class="medical-item"
+                      data-medical="ngtube"
+                      onclick="toggleMedical('ngtube')"
+                    >
+                      <div class="medical-diamond">
+                        <img src="images/ngtube.png" alt="NG Tube" />
+                      </div>
+                      <span>NG Tube</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="breadcrumb-with-back">
+            <button class="btn btn-outline btn-back" onclick="goBack()">
+              Back
+            </button>
+            <div class="breadcrumb-right-actions">
+              <button class="btn btn-skip" onclick="skipToPage2()">Skip</button>
+              <button class="btn btn-primary" onclick="nextToPage2()">
+                Next
+              </button>
+            </div>
+            <div class="progress-breadcrumb" id="progress-breadcrumb"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="shared.js"></script>
+    <script>
+      document.addEventListener("click", function (e) {
+        document
+          .querySelectorAll(".tooltip-wrapper.active")
+          .forEach(function (el) {
+            if (!el.contains(e.target)) {
+              el.classList.remove("active");
+            }
+          });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        generateSidebar("personalization");
+        generateBreadcrumb("personalization");
+
+        appData.medicalConsiderations.forEach((medical) => {
+          const item = document.querySelector(
+            `.medical-item[data-medical="${medical}"]`,
+          );
+          if (item) item.classList.add("selected");
+        });
+      });
+
+      function goBack() {
+        if (appData.themeType === "custom") {
+          goToPage("custom-theme.html");
+        } else {
+          goToPage("default-themes.html");
+        }
+      }
+
+      function toggleMedical(medical) {
+        const item = document.querySelector(
+          `.medical-item[data-medical="${medical}"]`,
+        );
+        if (appData.medicalConsiderations.includes(medical)) {
+          appData.medicalConsiderations = appData.medicalConsiderations.filter(
+            (m) => m !== medical,
+          );
+          item.classList.remove("selected");
+        } else {
+          appData.medicalConsiderations.push(medical);
+          item.classList.add("selected");
+        }
+        saveAppData(appData);
+      }
+
+      function nextToPage2() {
+        saveAppData(appData);
+        goToPage("personalization2.html");
+      }
+
+      function skipToPage2() {
+        appData.medicalConsiderations = [];
+        saveAppData(appData);
+        goToPage("personalization2.html");
+      }
+    </script>
+  </body>
+</html>

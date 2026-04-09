@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlayWard - About Us</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+      .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .page.active {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .page-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+      }
+      .page-content {
+        flex: 1;
+      }
+      .grass-footer {
+        flex-shrink: 0;
+        margin-top: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="main-content with-header">
+      <section class="page active">
+        <div class="page-wrapper">
+          <div class="page-content about-page">
+            <!-- About Us Header -->
+            <div class="about-header">
+              <h1 class="page-title">About Us</h1>
+              <p class="about-description">
+                PlayWard is an Artificial Intelligence puzzle prompt generator
+                created by Ball State's EMDD program in partnership with Shane
+                Rafferty a Technology Support Specialist with Ann &amp; Robert H.
+                Lurie Children's Hospital of Chicago. Prompts are created to
+                streamline the process to generate play materials for pediatric
+                patients, the tool evolved through extensive testing and expert
+                collaboration into the platform it is today.
+              </p>
+            </div>
+
+            <!-- Meet the Team Section -->
+            <div class="team-section">
+              <h2 class="team-title">Meet the EMDD Team</h2>
+
+              <div class="team-layout">
+                <!-- Group Photo -->
+                <div class="team-group-photo">
+                  <img src="images/group.png" alt="EMDD Team Group Photo" />
+                </div>
+
+                <!-- Individual Team Members -->
+                <div class="team-members">
+                  <div class="team-row">
+                    <div class="team-member">
+                      <div class="team-member-photo">
+                        <img src="images/faidat.png" alt="Faidat" />
+                      </div>
+                      <span class="team-member-name">Faidat</span>
+                    </div>
+                    <div class="team-member">
+                      <div class="team-member-photo">
+                        <img src="images/abdul.png" alt="Abdul-Razak" />
+                      </div>
+                      <span class="team-member-name">Abdul-Razak</span>
+                    </div>
+                    <div class="team-member">
+                      <div class="team-member-photo">
+                        <img src="images/ebuka.png" alt="Ebuka" />
+                      </div>
+                      <span class="team-member-name">Ebuka</span>
+                    </div>
+                  </div>
+                  <div class="team-row">
+                    <div class="team-member">
+                      <div class="team-member-photo">
+                        <img src="images/marcus.png" alt="Marcus" />
+                      </div>
+                      <span class="team-member-name">Marcus</span>
+                    </div>
+                    <div class="team-member">
+                      <div class="team-member-photo">
+                        <img src="images/joy.png" alt="Joy" />
+                      </div>
+                      <span class="team-member-name">Joy</span>
+                    </div>
+                    <div class="team-member">
+                      <div class="team-member-photo">
+                        <img src="images/fisher.png" alt="Dr. Fisher" />
+                      </div>
+                      <span class="team-member-name">Dr. Fisher</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end page-content -->
+          <footer class="grass-footer">
+            <img src="images/grass.png" alt="" />
+          </footer>
+        </div>
+        <!-- end page-wrapper -->
+      </section>
+    </main>
+
+    <script src="shared.js"></script>
+  </body>
+</html>

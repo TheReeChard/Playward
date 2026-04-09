@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlayWard - Activity Customization</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="main-content with-header">
+      <section class="page active">
+        <div class="page-wrapper">
+          <div class="page-content page-with-sidebar">
+            <div class="dynamic-sidebar" id="dynamic-sidebar">
+              <!-- Dynamic sidebar content -->
+            </div>
+            <div class="page-main">
+              <h1 class="page-title" id="customization-title">
+                Activity Customization
+              </h1>
+              <p class="page-subtitle" id="customization-subtitle">
+                Customize the specific details of your activity.
+              </p>
+
+              <div id="customization-content">
+                <!-- Dynamic content loaded by JavaScript -->
+              </div>
+            </div>
+          </div>
+          <div class="breadcrumb-with-back">
+            <button
+              class="btn btn-outline btn-back"
+              onclick="goToPage('personalization2.html')"
+            >
+              Back
+            </button>
+            <div class="progress-breadcrumb" id="progress-breadcrumb"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="shared.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Reload app data from localStorage
+        appData = loadAppData();
+
+        // Redirect if no activity selected
+        if (!appData.activityType) {
+          window.location.href = "activity-select.html";
+          return;
+        }
+
+        generateSidebar("customization");
+        generateBreadcrumb("customization");
+
+        // Load customization content based on activity type
+        const contentContainer = document.getElementById(
+          "customization-content",
+        );
+        contentContainer.innerHTML = getCustomizationContent();
+
+        // Event delegation for art style clicks — bulletproof regardless of child elements
+        contentContainer.addEventListener("click", function (e) {
+          const item = e.target.closest(".art-style-item");
+          if (!item) return;
+          const style = item.getAttribute("data-style");
+          if (!style) return;
+
+          const autoAdvance = item.getAttribute("data-auto-advance") === "true";
+          if (autoAdvance) {
+            selectArtStyleAndAdvance(style);
+          } else {
+            selectArtStyle(style);
+          }
+        });
+
+        // Update title and subtitle based on activity
+        const titleEl = document.getElementById("customization-title");
+        const subtitleEl = document.getElementById("customization-subtitle");
+
+        switch (appData.activityType) {
+          case "spot-the-difference":
+            titleEl.textContent = "Spot the Differences Customization";
+            subtitleEl.textContent =
+              "Select the style of the visuals on your final piece from one of the icons below. You can also choose to add specific objects to include and the number of differences by typing your preferences in the text boxes provided below.";
+            break;
+          case "hidden-objects":
+            titleEl.textContent = "Hidden Objects Customization";
+            subtitleEl.textContent =
+              "Select the style of the visuals on your final piece from one of the icons below. You can also choose to add any specific objects you want to include by typing them in the text box below.";
+            break;
+          case "coloring":
+            titleEl.textContent = "Coloring Page Customization";
+            subtitleEl.textContent =
+              "Select the style of the visuals on your final piece from one of the icons below.";
+            break;
+          case "story":
+            titleEl.textContent = "Short Story Customization";
+            subtitleEl.textContent =
+              'Select the story components from the options below. All selections are optional, and if you wish to skip this section simply press the "Next" button.';
+            break;
+          case "activity-game":
+            titleEl.textContent = "Activity Customization";
+            subtitleEl.textContent =
+              "Input the location you want the activity to take place at, the number of participants, and any restrictions the participants have in the provided text box below.";
+            break;
+          default:
+            titleEl.textContent = "Activity Customization";
+            subtitleEl.textContent =
+              "Customize the specific details of your activity.";
+        }
+      });
+    </script>
+  </body>
+</html>

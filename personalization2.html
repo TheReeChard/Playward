@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlayWard - Personalization</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .age-cards-row {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        margin-top: 10px;
+      }
+      .age-card {
+        width: 160px;
+        padding: 20px 15px 15px;
+      }
+      .age-card img {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 10px;
+      }
+      .age-card span {
+        font-size: 18px;
+        font-weight: 400;
+        text-align: center;
+        display: block;
+      }
+      .age-section h3 {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .gender-description-row {
+        justify-content: center !important;
+        margin-top: 20px;
+      }
+      .tooltip-wrapper {
+        position: relative;
+        display: inline-block;
+      }
+      .tooltip-wrapper .tooltip-box {
+        visibility: hidden;
+        opacity: 0;
+        background-color: #333;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: left;
+        border-radius: 8px;
+        padding: 10px 14px;
+        width: 280px;
+        position: absolute;
+        top: 50%;
+        left: calc(100% + 10px);
+        transform: translateY(-50%);
+        z-index: 100;
+        transition: opacity 0.2s ease;
+        pointer-events: none;
+      }
+      .tooltip-wrapper .tooltip-box::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 100%;
+        transform: translateY(-50%);
+        border: 6px solid transparent;
+        border-right-color: #333;
+      }
+      .tooltip-wrapper:hover .tooltip-box,
+      .tooltip-wrapper.active .tooltip-box {
+        visibility: visible;
+        opacity: 1;
+      }
+      .info-tooltip {
+        cursor: pointer;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="main-content with-header">
+      <section class="page active">
+        <div class="page-wrapper">
+          <div class="page-content page-with-sidebar">
+            <div class="dynamic-sidebar" id="dynamic-sidebar"></div>
+            <div class="page-main">
+              <h1 class="page-title">Select a Personalization</h1>
+              <p class="page-subtitle">
+                This is where you can include age range, gender, and/or
+                race/ethnicity considerations into your prompt. For example, if
+                the patient is 7 years old, you can select from the drop down
+                menu the age range 5–8 to include that consideration within the
+                play material. All selections on this page are optional, and if
+                you wish to skip this page simply press the "Skip" button. Once
+                you have all your selections made click the "Next" button to
+                continue.
+              </p>
+
+              <div class="personalization-content">
+                <div class="age-section">
+                  <h3>
+                    Age Range
+                    <span
+                      class="tooltip-wrapper"
+                      onclick="this.classList.toggle('active')"
+                      ><i class="fa-solid fa-circle-info info-tooltip"></i
+                      ><span class="tooltip-box"
+                        >Select the age range that you want considered for this
+                        activity being generated to ensure the generated
+                        material is age appropriate. Please select the answer
+                        with the closest age range to your needs as this does
+                        not need to be exact.</span
+                      ></span
+                    >
+                  </h3>
+                  <div class="age-cards-row">
+                    <div
+                      class="age-card"
+                      data-age="5-8"
+                      onclick="selectAge('5-8')"
+                    >
+                      <img src="images/age-5-8.png" alt="5-8 years old" />
+                      <span>5&#8209;8 years old</span>
+                    </div>
+                    <div
+                      class="age-card"
+                      data-age="9-12"
+                      onclick="selectAge('9-12')"
+                    >
+                      <img src="images/age-9-12.png" alt="9-12 years old" />
+                      <span>9&#8209;12 years old</span>
+                    </div>
+                    <div
+                      class="age-card"
+                      data-age="13-16"
+                      onclick="selectAge('13-16')"
+                    >
+                      <img src="images/age-13-16.png" alt="13-16 years old" />
+                      <span>13&#8209;16 years old</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="gender-description-row"
+                  style="
+                    display: flex;
+                    flex-direction: row;
+                    align-items: flex-start;
+                    gap: 24px;
+                  "
+                >
+                  <div class="form-group">
+                    <label
+                      >Gender
+                      <span
+                        class="tooltip-wrapper"
+                        onclick="this.classList.toggle('active')"
+                        ><i class="fa-solid fa-circle-info info-tooltip"></i
+                        ><span class="tooltip-box"
+                          >This dropdown is where you can select the gender you
+                          want considered for this activity being generated. If
+                          you have more than one gender present or do not wish
+                          to disclose this information, select "Prefer Not to
+                          Say".</span
+                        ></span
+                      ></label
+                    >
+                    <span class="hint">This is optional.</span>
+                    <div class="select-wrapper">
+                      <select id="gender-select">
+                        <option value="">Select</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="do-not-specify">Do Not Specify</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Additional Details
+                      <span
+                        class="tooltip-wrapper"
+                        onclick="this.classList.toggle('active')"
+                        ><i class="fa-solid fa-circle-info info-tooltip"></i
+                        ><span class="tooltip-box"
+                          >Fill in information about the child you would like to
+                          have reflected.</span
+                        ></span
+                      >
+                    </label>
+                    <span class="hint">This is optional.</span>
+                    <input
+                      type="text"
+                      id="child-description"
+                      placeholder=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="breadcrumb-with-back">
+            <button
+              class="btn btn-outline btn-back"
+              onclick="goToPage('personalization.html')"
+            >
+              Back
+            </button>
+            <div class="breadcrumb-right-actions">
+              <button class="btn btn-skip" onclick="skipPersonalization2()">
+                Skip
+              </button>
+              <button class="btn btn-primary" onclick="savePersonalization2()">
+                Next
+              </button>
+            </div>
+            <div class="progress-breadcrumb" id="progress-breadcrumb"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="shared.js"></script>
+    <script>
+      document.addEventListener("click", function (e) {
+        document
+          .querySelectorAll(".tooltip-wrapper.active")
+          .forEach(function (el) {
+            if (!el.contains(e.target)) {
+              el.classList.remove("active");
+            }
+          });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        generateSidebar("personalization2");
+        generateBreadcrumb("personalization2");
+
+        if (appData.ageRange) {
+          const card = document.querySelector(
+            `.age-card[data-age="${appData.ageRange}"]`,
+          );
+          if (card) card.classList.add("selected");
+        }
+        if (appData.gender) {
+          document.getElementById("gender-select").value = appData.gender;
+        }
+        if (appData.childDescription) {
+          document.getElementById("child-description").value =
+            appData.childDescription;
+        }
+      });
+
+      function selectAge(age) {
+        document
+          .querySelectorAll(".age-card")
+          .forEach((c) => c.classList.remove("selected"));
+        const card = document.querySelector(`.age-card[data-age="${age}"]`);
+        if (card) card.classList.add("selected");
+        appData.ageRange = age;
+        saveAppData(appData);
+      }
+
+      function savePersonalization2() {
+        appData.gender = document.getElementById("gender-select").value;
+        appData.childDescription =
+          document.getElementById("child-description").value;
+        saveAppData(appData);
+        goToPage("customization.html");
+      }
+
+      function skipPersonalization2() {
+        appData.ageRange = "";
+        appData.gender = "";
+        appData.childDescription = "";
+        saveAppData(appData);
+        goToPage("customization.html");
+      }
+    </script>
+  </body>
+</html>

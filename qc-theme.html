@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desktop - Quick Create - Theme</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .qc-theme-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 50px;
+        max-width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .qc-theme-item {
+        flex: 0 0 auto;
+        width: 180px;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.15s ease;
+      }
+
+      .qc-theme-item:hover {
+        transform: translateY(-3px);
+      }
+
+      .qc-theme-item.selected .qc-theme-box {
+        border-color: var(--color-primary);
+        background: var(--color-primary-light);
+      }
+
+      .qc-theme-box {
+        width: 160px;
+        height: 160px;
+        background: var(--color-circle-bg);
+        border-radius: 16px;
+        border: 3px solid transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s ease;
+        margin: 0 auto 10px;
+      }
+
+      .qc-theme-box img {
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+      }
+
+      .qc-theme-name {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--color-text);
+        margin-bottom: 4px;
+      }
+
+      .qc-theme-desc {
+        font-size: 12px;
+        color: var(--color-text-secondary);
+        line-height: 1.4;
+        max-width: 160px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="main-content with-header">
+      <section class="page active">
+        <div class="page-wrapper">
+          <div class="page-content page-with-sidebar">
+            <div class="dynamic-sidebar" id="dynamic-sidebar"></div>
+            <div class="page-main">
+              <h1 class="page-title">Select a Quick Create Prompt Theme</h1>
+              <p class="page-subtitle">
+                Select a generated prompt theme to move forward with creation.
+              </p>
+
+              <div class="qc-theme-grid">
+                <div
+                  class="qc-theme-item"
+                  data-theme="superheroes"
+                  onclick="selectQCTheme('superheroes')"
+                >
+                  <div class="qc-theme-box">
+                    <img src="images/superhero.png" alt="Superheroes" />
+                  </div>
+                  <div class="qc-theme-name">Superheroes</div>
+                  <div class="qc-theme-desc">
+                    Up up and away! Click this option to have fantastic heroes
+                    in your prompt!
+                  </div>
+                </div>
+                <div
+                  class="qc-theme-item"
+                  data-theme="animals"
+                  onclick="selectQCTheme('animals')"
+                >
+                  <div class="qc-theme-box">
+                    <img src="images/animal.png" alt="Animals" />
+                  </div>
+                  <div class="qc-theme-name">Animals</div>
+                  <div class="qc-theme-desc">
+                    Click this option to have wild and amazing animals in your
+                    prompt!
+                  </div>
+                </div>
+                <div
+                  class="qc-theme-item"
+                  data-theme="sports"
+                  onclick="selectQCTheme('sports')"
+                >
+                  <div class="qc-theme-box">
+                    <img src="images/sport.png" alt="Sports" />
+                  </div>
+                  <div class="qc-theme-name">Sports</div>
+                  <div class="qc-theme-desc">
+                    Click this option to have all kinds of sports in your
+                    prompt!
+                  </div>
+                </div>
+                <div
+                  class="qc-theme-item"
+                  data-theme="space"
+                  onclick="selectQCTheme('space')"
+                >
+                  <div class="qc-theme-box">
+                    <img src="images/space.png" alt="Space" />
+                  </div>
+                  <div class="qc-theme-name">Space</div>
+                  <div class="qc-theme-desc">
+                    There's so much to explore! Click this option to have the
+                    wonders of space in your prompt!
+                  </div>
+                </div>
+                <div
+                  class="qc-theme-item"
+                  data-theme="ocean"
+                  onclick="selectQCTheme('ocean')"
+                >
+                  <div class="qc-theme-box">
+                    <img src="images/ocean.png" alt="Ocean" />
+                  </div>
+                  <div class="qc-theme-name">Ocean</div>
+                  <div class="qc-theme-desc">
+                    From coral reefs to open ocean, click this option to have
+                    the vast sea in your prompt!
+                  </div>
+                </div>
+                <div
+                  class="qc-theme-item"
+                  data-theme="nature"
+                  onclick="selectQCTheme('nature')"
+                >
+                  <div class="qc-theme-box">
+                    <img src="images/nature.png" alt="Nature" />
+                  </div>
+                  <div class="qc-theme-name">Nature</div>
+                  <div class="qc-theme-desc">
+                    The outdoor has so much to explore! Click this option to
+                    combat cabin fever with some nature in your prompt!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="breadcrumb-with-back">
+            <button
+              class="btn btn-outline btn-back"
+              onclick="goToPage('qc-select.html')"
+            >
+              Back
+            </button>
+            <div class="progress-breadcrumb" id="progress-breadcrumb"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="shared.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        generateQCSidebar(1);
+        generateQCBreadcrumb(1);
+      });
+
+      function selectQCTheme(theme) {
+        document
+          .querySelectorAll(".qc-theme-item")
+          .forEach((i) => i.classList.remove("selected"));
+        document
+          .querySelector(`.qc-theme-item[data-theme="${theme}"]`)
+          .classList.add("selected");
+        qcData.theme = theme;
+        saveQCData();
+        setTimeout(() => goToPage("qc-final.html"), 300);
+      }
+    </script>
+  </body>
+</html>

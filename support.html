@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlayWard - Support</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .video-placeholder {
+        width: 370px;
+        height: 200px;
+        background: #d9d9d9;
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 12px 0 0;
+        cursor: pointer;
+        gap: 10px;
+      }
+      .video-placeholder .play-icon {
+        width: 0;
+        height: 0;
+        border-top: 18px solid transparent;
+        border-bottom: 18px solid transparent;
+        border-left: 30px solid #333;
+      }
+      .video-placeholder span {
+        font-size: 13px;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="main-content with-header">
+      <section class="page active">
+        <div class="page-wrapper">
+          <div class="page-content support-page">
+            <!-- Support Header -->
+            <div class="support-header">
+              <h1 class="page-title">Need Help?</h1>
+              <p class="support-description">
+                Having trouble or just looking around? We can help! On this page
+                you can find video tutorials of how our portal works as well as
+                a FAQs section that can help you troubleshoot if necessary.
+              </p>
+            </div>
+
+            <!-- Video Tutorials Section -->
+            <div class="video-section">
+              <div class="video-container">
+                <h3 class="video-title">Creating a Custom Prompt Video</h3>
+                <iframe
+                  src="https://ballstate-my.sharepoint.com/personal/joy_willis_bsu_edu/_layouts/15/embed.aspx?UniqueId=d506c5d2-0c9f-4f4e-bc15-3b79bd9e27cb&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create"
+                  width="370"
+                  height="208"
+                  frameborder="0"
+                  scrolling="no"
+                  allowfullscreen
+                  style="border-radius: 16px"
+                  title="Customize Prompt Tutorial"
+                ></iframe>
+              </div>
+              <div class="video-container">
+                <h3 class="video-title">Using quick create option Video</h3>
+                <iframe
+                  src="https://ballstate-my.sharepoint.com/personal/joy_willis_bsu_edu/_layouts/15/embed.aspx?UniqueId=040a2aad-bcb9-42dc-8ea6-8410db727537&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create"
+                  width="370"
+                  height="208"
+                  frameborder="0"
+                  scrolling="no"
+                  allowfullscreen
+                  style="border-radius: 16px"
+                  title="Quick Create Tutorial"
+                ></iframe>
+              </div>
+            </div>
+
+            <!-- FAQs Section -->
+            <div class="faq-section">
+              <div class="faq-mascot">
+                <img src="images/girljumpright.png" alt="PlayWard Mascot" />
+              </div>
+              <div class="faq-content">
+                <h2 class="faq-title">FAQs/Troubleshooting</h2>
+
+                <div class="faq-list">
+                  <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                      <span>How do I create a prompt?</span>
+                      <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                      <p>
+                        Start with either Quick Create or Customize Prompt. The
+                        user-friendly interface will take you through steps that
+                        generate a completed prompt.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                      <span>Can the prompt be used in a different AI than what is opened?</span>
+                      <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                      <p>
+                        Yes, you can copy the prompt into any AI generator.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                      <span>My prompt won't work, what should I do?</span>
+                      <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                      <p>
+                        Try inputting the prompt into the AI again. If this does
+                        not work, tell the AI what is wrong with the prompt and
+                        test if it will fix it. For example, if the prompt is
+                        generating correctly everything but is not recognizing
+                        your theme choice of "superheroes" you can type in your
+                        AI chat, "Regenerate using a superhero theme."
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                      <span>I can't get the prompt to copy.</span>
+                      <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                      <p>
+                        If you cannot get the prompt to copy through the "Copy
+                        and Open" button then simply select the prompt text and
+                        copy it manually with your device.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                      <span>Which AI should I use?</span>
+                      <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                      <p>
+                        You aren't restricted to our suggestions. While we
+                        recommend specific models based on our testing for each
+                        prompt type, you are free to use any AI platform you
+                        prefer.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                      <span>How do I generate a different type puzzle?</span>
+                      <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                      <p>
+                        To start over, return to the home page. If you are
+                        mid-process, click the top-left icon to jump back to the
+                        activity selection screen.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                      <span>The AI is not generating what I wanted.</span>
+                      <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                      <p>
+                        Please review your prompt to ensure you are following
+                        all copyright and intellectual property guidelines. AI
+                        is limited with the information and functionality for
+                        generating specific items. Try simplifying your prompt
+                        or generating a new prompt using PlayWard.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                      <span>Does PlayWard save prompts or other data?</span>
+                      <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                      <p>
+                        To ensure privacy, PlayWard does not require an account
+                        or save on data/prompts.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                      <span>Are prompts checked for accuracy consistently due to changes in AI?</span>
+                      <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                      <p>
+                        We make every effort to validate prompts every 2-3 months due to model types and platforms changing.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                      <span>What if the "Copy and Open" button doesn't open the AI tool?</span>
+                      <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                      <p>
+                        If the AI platform does not open automatically, copy the
+                        prompt manually and paste it into your preferred AI tool.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer class="grass-footer">
+            <img src="images/grass.png" alt="" />
+          </footer>
+        </div>
+      </section>
+    </main>
+
+    <script src="shared.js"></script>
+    <script>
+      function toggleFaq(element) {
+        const faqItem = element.parentElement;
+        const icon = element.querySelector("i");
+
+        // Close all other FAQs
+        document.querySelectorAll(".faq-item").forEach((item) => {
+          if (item !== faqItem) {
+            item.classList.remove("active");
+            item.querySelector("i").classList.remove("fa-minus");
+            item.querySelector("i").classList.add("fa-plus");
+          }
+        });
+
+        // Toggle current FAQ
+        faqItem.classList.toggle("active");
+
+        if (faqItem.classList.contains("active")) {
+          icon.classList.remove("fa-plus");
+          icon.classList.add("fa-minus");
+        } else {
+          icon.classList.remove("fa-minus");
+          icon.classList.add("fa-plus");
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlayWard - Custom Theme</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+      .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .page.active {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .page-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .page-content {
+        flex: 1;
+      }
+      .custom-theme-form {
+        width: 500px;
+        margin: 0 auto;
+      }
+      .tooltip-wrapper {
+        position: relative;
+        display: inline-block;
+      }
+      .tooltip-wrapper .tooltip-box {
+        visibility: hidden;
+        opacity: 0;
+        background-color: #333;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: left;
+        border-radius: 8px;
+        padding: 10px 14px;
+        width: 280px;
+        position: absolute;
+        top: 50%;
+        left: calc(100% + 10px);
+        transform: translateY(-50%);
+        z-index: 100;
+        transition: opacity 0.2s ease;
+        pointer-events: none;
+      }
+      .tooltip-wrapper .tooltip-box::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 100%;
+        transform: translateY(-50%);
+        border: 6px solid transparent;
+        border-right-color: #333;
+      }
+      .tooltip-wrapper:hover .tooltip-box,
+      .tooltip-wrapper.active .tooltip-box {
+        visibility: visible;
+        opacity: 1;
+      }
+      .info-tooltip {
+        cursor: pointer;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="main-content with-header">
+      <section class="page active">
+        <div class="page-wrapper">
+          <div class="page-content page-with-sidebar">
+            <div class="dynamic-sidebar" id="dynamic-sidebar">
+              <!-- Dynamic sidebar content -->
+            </div>
+            <div class="page-main">
+              <h1 class="page-title">Customize the Theme</h1>
+              <p class="page-subtitle">
+                Enter your custom theme name under "Specific Custom Theme"
+                below! If you would like to add a certain focus or character to
+                your theme as well, then type them in the spaces provided below.
+                One example of this is if you want your theme to be "animals",
+                and you want that theme to be "turtles".
+              </p>
+
+              <div class="custom-theme-form">
+                <div class="form-group">
+                  <label>Specific Custom Theme
+                    <span
+                      class="tooltip-wrapper"
+                      onclick="this.classList.toggle('active')"
+                      ><i class="fa-solid fa-circle-info info-tooltip"></i
+                      ><span class="tooltip-box"
+                        >Type in the text box the custom theme you would like to
+                        create the prompt with. For example, your theme could be
+                        "basketball."</span
+                      ></span
+                    >
+                  </label>
+                  <span class="hint"><em>This is required</em></span>
+                  <input type="text" id="custom-theme-input" placeholder="" />
+                </div>
+                <div
+                  class="form-row"
+                  style="display: flex; gap: 24px; margin-top: 20px"
+                >
+                  <div class="form-group" style="flex: 1">
+                    <label>Specific Theme Focus
+                      <span
+                        class="tooltip-wrapper"
+                        onclick="this.classList.toggle('active')"
+                        ><i class="fa-solid fa-circle-info info-tooltip"></i
+                        ><span class="tooltip-box"
+                          >Type in the textbox any focus you want your theme to
+                          have. e.g. If your theme is "basketball", your focus
+                          could be "the Lakers."</span
+                        ></span
+                      >
+                    </label>
+                    <span class="hint">This is optional</span>
+                    <input
+                      type="text"
+                      id="theme-focus-input"
+                      placeholder=""
+                    />
+                  </div>
+                  <div class="form-group" style="flex: 1">
+                    <label>Specific Theme Character
+                      <span
+                        class="tooltip-wrapper"
+                        onclick="this.classList.toggle('active')"
+                        ><i class="fa-solid fa-circle-info info-tooltip"></i
+                        ><span class="tooltip-box"
+                          >Type in the textbox any specific character you want
+                          your theme to have. For example, if your theme is
+                          "basketball", your focus could be "Michael
+                          Jordan."</span
+                        ></span
+                      >
+                    </label>
+                    <span class="hint">This is optional</span>
+                    <input
+                      type="text"
+                      id="theme-character-input"
+                      placeholder=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="breadcrumb-with-back">
+            <button
+              class="btn btn-outline btn-back"
+              onclick="goToPage('theme-type.html')"
+            >
+              Back
+            </button>
+            <div class="breadcrumb-right-actions">
+              <button class="btn btn-primary" onclick="saveCustomTheme()">
+                Next
+              </button>
+            </div>
+            <div class="progress-breadcrumb" id="progress-breadcrumb"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="shared.js"></script>
+    <script>
+      document.addEventListener("click", function (e) {
+        document
+          .querySelectorAll(".tooltip-wrapper.active")
+          .forEach(function (el) {
+            if (!el.contains(e.target)) el.classList.remove("active");
+          });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        generateSidebar("custom-theme");
+        generateBreadcrumb("custom-theme");
+
+        // Populate fields with existing data
+        if (appData.customTheme) {
+          document.getElementById("custom-theme-input").value =
+            appData.customTheme;
+        }
+        if (appData.themeFocus) {
+          document.getElementById("theme-focus-input").value =
+            appData.themeFocus;
+        }
+        if (appData.themeCharacter) {
+          document.getElementById("theme-character-input").value =
+            appData.themeCharacter;
+        }
+      });
+
+      function saveCustomTheme() {
+        const customTheme = document
+          .getElementById("custom-theme-input")
+          .value.trim();
+        const themeFocus = document
+          .getElementById("theme-focus-input")
+          .value.trim();
+        const themeCharacter = document
+          .getElementById("theme-character-input")
+          .value.trim();
+
+        if (!customTheme) {
+          alert("Please enter a custom theme.");
+          return;
+        }
+
+        appData.customTheme = customTheme;
+        appData.themeFocus = themeFocus;
+        appData.themeCharacter = themeCharacter;
+        appData.theme = ""; // Clear default theme
+        saveAppData(appData);
+
+        goToPage("personalization.html");
+      }
+    </script>
+  </body>
+</html>

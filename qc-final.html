@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desktop - Quick Create - Review</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .qc-final-section {
+        max-width: 680px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .qc-final-section h2 {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .qc-final-section .qc-final-sub {
+        font-size: 13px;
+        color: var(--color-text-secondary);
+        margin-bottom: 20px;
+        line-height: 1.5;
+      }
+      .qc-prompt-box {
+        background: #f0f0f0;
+        border-radius: 12px;
+        padding: 28px 30px;
+        text-align: left;
+        min-height: 0;
+        font-size: 20px;
+        line-height: 1.6;
+        color: var(--color-text);
+        border: none;
+        width: 100%;
+        resize: none;
+        overflow: hidden;
+        font-family: inherit;
+        outline: none;
+        box-sizing: border-box;
+      }
+      .qc-final-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+      }
+
+      /* ── Modal overlay ── */
+      .pw-modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+      }
+      .pw-modal-overlay.active {
+        display: flex;
+      }
+      .pw-modal {
+        background: #1a405d;
+        color: #fff;
+        border-radius: 16px;
+        padding: 48px 56px 44px;
+        max-width: 580px;
+        width: 90%;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+        animation: modalPop 0.25s ease;
+      }
+      @keyframes modalPop {
+        from {
+          transform: scale(0.88);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .pw-modal-close {
+        position: absolute;
+        top: 14px;
+        right: 20px;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 24px;
+        cursor: pointer;
+        opacity: 0.75;
+        line-height: 1;
+      }
+      .pw-modal-close:hover {
+        opacity: 1;
+      }
+      .pw-modal h2 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 18px;
+        line-height: 1.35;
+      }
+      .pw-modal p {
+        font-size: 20px;
+        line-height: 1.65;
+        opacity: 0.9;
+        margin-bottom: 32px;
+      }
+      .pw-modal .btn-continue {
+        background: #db6e3b;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        padding: 14px 48px;
+        font-size: 20px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .pw-modal .btn-continue:hover {
+        background: #c25e2e;
+      }
+
+      /* Stage 2 spinner */
+      .pw-modal.stage2 .spinner {
+        width: 36px;
+        height: 36px;
+        border: 4px solid rgba(255, 255, 255, 0.25);
+        border-top-color: #5aa9e6;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin: 0 auto 18px;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ── Confetti canvas ── */
+      #confetti-canvas {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1999;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="main-content with-header">
+      <section class="page active">
+        <div class="page-wrapper">
+          <div class="page-content page-with-sidebar">
+            <div class="dynamic-sidebar" id="dynamic-sidebar"></div>
+            <div class="page-main">
+              <h1 class="page-title">Review/Edit the Quick Create Prompt</h1>
+              <p class="page-subtitle" style="font-size: 16px">
+                When your prompt is generated, select the "Copy" button. The
+                prompt will be copied and you can then open the recommended AI
+                prompt engine in a new browser window. From there, simply select
+                the AI's chat function and paste the prompt. Once you hit the
+                send button, the AI will generate your activity! Make sure to
+                check the final product for accuracy.
+              </p>
+
+              <div class="qc-final-section">
+                <h2 style="text-align: left">Final Quick Create Prompt</h2>
+                <p class="qc-final-sub" style="text-align: left">
+                  If you need to change the prompt, you can either go back to
+                  previous<br />
+                  selections or click into the text box to type in and change
+                  the prompt manually.
+                </p>
+                <textarea
+                  class="qc-prompt-box"
+                  id="qc-generated-prompt"
+                ></textarea>
+                <div class="qc-final-actions">
+                  <button class="btn btn-primary" onclick="handleCopy()">
+                    Copy
+                  </button>
+                </div>
+                <p
+                  style="
+                    text-align: right;
+                    font-size: 13px;
+                    color: #000000;
+                    margin-top: 8px;
+                    margin-bottom: 48px;
+                  "
+                >
+                  This template has been tested and been verified to
+                  <br />
+                  work 90% using Copilot as of 3/29/26.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="breadcrumb-with-back">
+            <button
+              class="btn btn-outline btn-back"
+              onclick="goToPage('qc-theme.html')"
+            >
+              Back
+            </button>
+            <div class="progress-breadcrumb" id="progress-breadcrumb"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Confetti canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Modal Stage 1: Prompt copied — confirm before opening AI -->
+    <div class="pw-modal-overlay" id="modal-stage1">
+      <div class="pw-modal">
+        <button class="pw-modal-close" onclick="closeAllModals()">
+          &times;
+        </button>
+        <h2>Your prompt has been copied!</h2>
+        <p>
+          You are now leaving the PlayWard site. We cannot guarantee the
+          accuracy of the AI Agent as the agents are continuously updating. Be
+          sure to check all final outputs before use.
+        </p>
+        <button class="btn-continue" onclick="proceedToAI()">
+          Continue to AI
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal Stage 2: Opening Gemini -->
+    <div class="pw-modal-overlay" id="modal-stage2">
+      <div class="pw-modal stage2">
+        <div class="spinner"></div>
+        <h2>Success!<br />Your prompt is being copied...</h2>
+        <p>
+          You are leaving the PlayWard site. We cannot guarantee the accuracy of
+          the AI Agent as the agents are continuously updating. Be sure to check
+          all final outputs before use.
+        </p>
+      </div>
+    </div>
+
+    <script src="shared.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        generateQCSidebar(2);
+        generateQCBreadcrumb(2);
+        generateQCPrompt();
+      });
+
+      function generateQCPrompt() {
+        const activity = qcData.activity || "coloring";
+        const theme = qcData.theme || "superheroes";
+        const themeLabel = theme.charAt(0).toUpperCase() + theme.slice(1);
+
+        const templates = {
+          coloring: `Create a personalized image of a coloring page for a child with the theme of ${themeLabel}.\n\nActivity Requirements:\n- Page Type: Standard Coloring Page\n- Complexity / Age Level: 5-8\n- Art Style: Bold Cartoon Lines\n- Theme: ${themeLabel}\n\nThe page should feature bold outlines and fun, age-appropriate imagery themed around ${themeLabel}. Keep the design engaging and easy to color with clear sections and a cheerful overall feel.`,
+
+          "spot-the-difference": `Create a personalized image of a spot-the-difference game for a child with the theme of ${themeLabel}.\n\nActivity Requirements:\n- Page Type: Spot the Difference\n- Complexity / Age Level: 5-8\n- Number of Differences: 3\n- Theme: ${themeLabel}\n\nCreate two very similar side-by-side illustrations featuring ${themeLabel}-themed imagery with 3 subtle differences between them. Include a checklist at the bottom for the child to mark each difference they find.`,
+
+          "hidden-objects": `Create a personalized image of a hidden objects game for a child with the theme of ${themeLabel}.\n\nActivity Requirements:\n- Page Type: Hidden Objects\n- Complexity / Age Level: 5-8\n- Theme: ${themeLabel}\n\nCreate a fun scene themed around ${themeLabel} with 5 hidden objects for the child to find. Include a checklist of the game's hidden objects at the bottom of the page.`,
+        };
+
+        const prompt = templates[activity] || templates.coloring;
+        const ta = document.getElementById("qc-generated-prompt");
+        ta.value = prompt;
+        ta.style.height = "auto";
+        ta.style.height = ta.scrollHeight + "px";
+        ta.addEventListener("input", function () {
+          this.style.height = "auto";
+          this.style.height = this.scrollHeight + "px";
+        });
+      }
+
+      function handleCopy() {
+        const prompt = document.getElementById("qc-generated-prompt").value;
+        navigator.clipboard.writeText(prompt).catch(() => {
+          const ta = document.getElementById("qc-generated-prompt");
+          ta.select();
+          document.execCommand("copy");
+        });
+        launchConfetti();
+        document.getElementById("modal-stage1").classList.add("active");
+      }
+
+      function closeAllModals() {
+        document.getElementById("modal-stage1").classList.remove("active");
+        document.getElementById("modal-stage2").classList.remove("active");
+      }
+
+      function proceedToAI() {
+        document.getElementById("modal-stage1").classList.remove("active");
+        document.getElementById("modal-stage2").classList.add("active");
+        setTimeout(function () {
+          window.open("https://copilot.microsoft.com", "_blank");
+          document.getElementById("modal-stage2").classList.remove("active");
+        }, 1800);
+      }
+
+      function launchConfetti() {
+        const canvas = document.getElementById("confetti-canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const colors = [
+          "#5aa9e6",
+          "#1a405d",
+          "#ffd700",
+          "#ff6b6b",
+          "#6bcb77",
+          "#ff9f43",
+          "#ffffff",
+          "#c084fc",
+        ];
+
+        const pieces = Array.from({ length: 180 }, () => ({
+          x: Math.random() * canvas.width,
+          y: Math.random() * -canvas.height * 0.5,
+          w: Math.random() * 11 + 5,
+          h: Math.random() * 6 + 3,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rot: Math.random() * Math.PI * 2,
+          rotSpeed: (Math.random() - 0.5) * 0.14,
+          vx: (Math.random() - 0.5) * 3.5,
+          vy: Math.random() * 4 + 2.5,
+          alpha: 1,
+        }));
+
+        let rafId;
+        let tick = 0;
+
+        function draw() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          tick++;
+          let any = false;
+
+          pieces.forEach(function (p) {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.rot += p.rotSpeed;
+            if (tick > 80) p.alpha -= 0.013;
+            if (p.alpha > 0 && p.y < canvas.height + 30) {
+              any = true;
+              ctx.save();
+              ctx.globalAlpha = Math.max(0, p.alpha);
+              ctx.translate(p.x, p.y);
+              ctx.rotate(p.rot);
+              ctx.fillStyle = p.color;
+              ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+              ctx.restore();
+            }
+          });
+
+          if (any) {
+            rafId = requestAnimationFrame(draw);
+          } else {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+          }
+        }
+
+        cancelAnimationFrame(rafId);
+        draw();
+      }
+    </script>
+  </body>
+</html>

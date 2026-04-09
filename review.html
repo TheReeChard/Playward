@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlayWard - Review Selections</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .review-section {
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+      .review-section:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+      .review-section-title {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #1a405d;
+        margin-bottom: 10px;
+      }
+      .review-row {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin-bottom: 6px;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .review-label {
+        font-weight: 600;
+        color: #555;
+        min-width: 170px;
+        flex-shrink: 0;
+      }
+      .review-label::after {
+        content: ":";
+      }
+      .review-value {
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="main-content with-header">
+      <section class="page active">
+        <div class="page-wrapper">
+          <div class="page-content page-with-sidebar">
+            <div class="dynamic-sidebar" id="dynamic-sidebar">
+              <!-- Dynamic sidebar content -->
+            </div>
+            <div class="page-main">
+              <h1 class="page-title">Review Selections</h1>
+              <p class="page-subtitle">
+                Review your choices from the previous selection pages. If you
+                are happy with your choices, select the Generate Prompt button
+                to review the final prompt. If you need to make adjustments to
+                your choices, select the Edit Choices button to navigate to the
+                previous page.
+              </p>
+
+              <div class="review-content">
+                <div class="review-box">
+                  <div id="review-summary">
+                    <!-- Dynamic content -->
+                  </div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: 12px;
+                  "
+                >
+                  <button
+                    class="btn btn-primary"
+                    onclick="goToFinal()"
+                    style="color: #000000"
+                  >
+                    Generate Prompt
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="breadcrumb-with-back">
+            <button
+              class="btn btn-outline btn-back"
+              onclick="goToPage('customization.html')"
+            >
+              Back
+            </button>
+            <div class="progress-breadcrumb" id="progress-breadcrumb"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="shared.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        generateSidebar("review");
+        generateBreadcrumb("review");
+        loadReviewSummary();
+      });
+
+      function loadReviewSummary() {
+        const container = document.getElementById("review-summary");
+
+        const activityNames = {
+          coloring: "Coloring Page",
+          "spot-the-difference": "Spot the Difference",
+          "hidden-objects": "Hidden Objects",
+          crossword: "Crossword",
+          wordsearch: "Word Search",
+        };
+
+        const artStyleLabels = {
+          "3d-rendering": "3D Rendering",
+          "comic-book": "Comic Book",
+          geometric: "Geometric",
+          anime: "Anime",
+          realistic: "Realistic",
+          drawing: "Drawing",
+        };
+
+        const genderLabels = {
+          male: "Male",
+          female: "Female",
+          "do-not-specify": "Do Not Specify",
+        };
+
+        function row(label, value) {
+          if (!value) return "";
+          return `<div class="review-row">
+            <span class="review-label">${label}</span>
+            <span class="review-value">${value}</span>
+          </div>`;
+        }
+
+        // Activity
+        const activityName = activityNames[appData.activityType] || "—";
+
+        // Theme
+        const themeType = appData.themeType === "custom" ? "Custom" : "Default";
+        const themeName = appData.customTheme
+          ? appData.customTheme
+          : appData.theme
+            ? appData.theme.charAt(0).toUpperCase() + appData.theme.slice(1)
+            : "—";
+
+        // Customization
+        const artStyle = artStyleLabels[appData.customization.artStyle] || "";
+        const objectsInclude = appData.customization["objects-include"] || "";
+        const numDiffs = appData.customization["num-differences"] || "";
+        const wordCount = appData.customization["word-count"]
+          ? appData.customization["word-count"] + " words" : "";
+        const gridSize = appData.customization["grid-size"]
+          ? appData.customization["grid-size"].charAt(0).toUpperCase() +
+            appData.customization["grid-size"].slice(1) : "";
+        const nickname = appData.customization["child-nickname"] || "";
+
+        // Personalization
+        const ageRange = appData.ageRange ? appData.ageRange + " years old" : "";
+        const gender = genderLabels[appData.gender] || "";
+        const childDescription = appData.childDescription || "";
+        const medicalContext = formatMedicalContext();
+
+        // Build sections
+        let html = `<div class="review-section">
+          <div class="review-section-title">Activity</div>
+          ${row("Type", activityName)}
+        </div>`;
+
+        html += `<div class="review-section">
+          <div class="review-section-title">Theme</div>
+          ${row("Theme Type", themeType)}
+          ${row("Theme", themeName)}
+          ${row("Theme Focus", appData.themeFocus)}
+          ${row("Theme Character", appData.themeCharacter)}
+        </div>`;
+
+        const customizationRows = [
+          row("Art Style", artStyle),
+          row("Objects to Include", objectsInclude),
+          row("Number of Differences", numDiffs),
+          row("Word Count", wordCount),
+          row("Grid Size", gridSize),
+          row("Child's Nickname", nickname),
+        ].join("");
+
+        if (customizationRows) {
+          html += `<div class="review-section">
+            <div class="review-section-title">Customization</div>
+            ${customizationRows}
+          </div>`;
+        }
+
+        html += `<div class="review-section">
+          <div class="review-section-title">Personalization</div>
+          ${row("Age Range", ageRange)}
+          ${row("Gender", gender)}
+          ${row("Child Description", childDescription)}
+          ${row("Medical Considerations", medicalContext || "None selected")}
+        </div>`;
+
+        container.innerHTML = html;
+      }
+
+      function editChoices() {
+        goToPage("personalization.html");
+      }
+
+      function goToFinal() {
+        goToPage("final.html");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlayWard - Select Default Theme</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .theme-grid-new {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 50px;
+        margin-top: 40px;
+        max-width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .theme-grid-new .theme-item {
+        flex: 0 0 auto;
+        width: 180px;
+        text-align: center;
+      }
+      .theme-grid-new .theme-box {
+        width: 160px;
+        height: 160px;
+        margin: 0 auto 12px;
+      }
+      .theme-grid-new .theme-box img {
+        width: 100px;
+        height: 100px;
+      }
+      .theme-grid-new .theme-label {
+        font-size: 18px;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="main-content with-header">
+      <section class="page active">
+        <div class="page-wrapper">
+          <div class="page-content page-with-sidebar">
+            <div class="dynamic-sidebar" id="dynamic-sidebar"></div>
+            <div class="page-main">
+              <h1 class="page-title">Select a Default Theme</h1>
+              <p class="page-subtitle">
+                Select one of our six default themes from the icons below. If
+                you decide you want to create a custom theme instead, please
+                select the Customize icon on the left side of the page.
+              </p>
+
+              <div class="theme-grid-new">
+                <div
+                  class="theme-item"
+                  data-theme="superheroes"
+                  onclick="selectTheme('superheroes')"
+                >
+                  <div class="theme-box">
+                    <img src="images/superhero.png" alt="Superheroes" />
+                  </div>
+                  <span class="theme-label">Superheroes</span>
+                </div>
+                <div
+                  class="theme-item"
+                  data-theme="animals"
+                  onclick="selectTheme('animals')"
+                >
+                  <div class="theme-box">
+                    <img src="images/animal.png" alt="Animals" />
+                  </div>
+                  <span class="theme-label">Animals</span>
+                </div>
+                <div
+                  class="theme-item"
+                  data-theme="space"
+                  onclick="selectTheme('space')"
+                >
+                  <div class="theme-box">
+                    <img src="images/space.png" alt="Space" />
+                  </div>
+                  <span class="theme-label">Space</span>
+                </div>
+                <div
+                  class="theme-item"
+                  data-theme="ocean"
+                  onclick="selectTheme('ocean')"
+                >
+                  <div class="theme-box">
+                    <img src="images/ocean.png" alt="Ocean" />
+                  </div>
+                  <span class="theme-label">Ocean</span>
+                </div>
+                <div
+                  class="theme-item"
+                  data-theme="sports"
+                  onclick="selectTheme('sports')"
+                >
+                  <div class="theme-box">
+                    <img src="images/sport.png" alt="Sports" />
+                  </div>
+                  <span class="theme-label">Sports</span>
+                </div>
+                <div
+                  class="theme-item"
+                  data-theme="nature"
+                  onclick="selectTheme('nature')"
+                >
+                  <div class="theme-box">
+                    <img src="images/nature.png" alt="Nature" />
+                  </div>
+                  <span class="theme-label">Nature</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="breadcrumb-with-back">
+            <button
+              class="btn btn-outline btn-back"
+              onclick="goToPage('theme-type.html')"
+            >
+              Back
+            </button>
+            <div class="progress-breadcrumb" id="progress-breadcrumb"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="shared.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        generateSidebar("default-themes");
+        generateBreadcrumb("default-themes");
+        if (appData.theme) {
+          const selected = document.querySelector(
+            `.theme-item[data-theme="${appData.theme}"]`,
+          );
+          if (selected) selected.classList.add("selected");
+        }
+      });
+
+      function selectTheme(theme) {
+        document
+          .querySelectorAll(".theme-item")
+          .forEach((item) => item.classList.remove("selected"));
+        const selectedItem = document.querySelector(
+          `.theme-item[data-theme="${theme}"]`,
+        );
+        if (selectedItem) selectedItem.classList.add("selected");
+        appData.theme = theme;
+        appData.customTheme = "";
+        saveAppData(appData);
+        setTimeout(() => goToPage("personalization.html"), 300);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desktop - Amuze Labs - Wordsearch</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .video-placeholder {
+        width: 370px;
+        margin: 30px auto 28px;
+        border-radius: 16px;
+        overflow: hidden;
+        display: block;
+      }
+      .video-placeholder img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .amuselabs-cta {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="main-content with-header">
+      <section class="page active">
+        <div class="page-wrapper">
+          <div class="page-content">
+            <h1 class="page-title">Generate a Word Search using PuzzleMe</h1>
+            <p class="page-subtitle">
+              Ready to build? This offsite generator handles the heavy lifting
+              so you don't have to worry about prompts. Watch the video below to
+              see how it works, then click through to get started!
+            </p>
+
+            <div class="video-placeholder">
+              <img src="images/vid.png" alt="Video instructions" />
+            </div>
+
+            <div class="amuselabs-cta">
+              <button
+                class="btn btn-primary"
+                onclick="
+                  window.open(
+                    'https://puzzleme.amuselabs.com/pmm/wordsearch-create',
+                    '_blank',
+                  )
+                "
+              >
+                Go to PuzzleMe
+              </button>
+            </div>
+          </div>
+
+          <div class="breadcrumb-with-back">
+            <button
+              class="btn btn-outline btn-back"
+              onclick="goToPage('activity-select.html')"
+            >
+              Back
+            </button>
+            <div class="progress-breadcrumb"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="shared.js"></script>
+  </body>
+</html>

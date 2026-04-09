@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlayWard - Instructions</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .page-content {
+        padding: 0 !important;
+        margin-top: 0 !important;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .main-content.with-header {
+        padding-top: 0 !important;
+        margin-top: -30px !important;
+      }
+
+      .page-wrapper {
+        min-height: calc(100vh - var(--header-height));
+      }
+
+      /* BOX 1 — full-width top bar */
+      .instructions-top-bar {
+        width: 100%;
+        padding: 5rem 5% 1rem;
+      }
+
+      .instructions-top-bar h1 {
+        font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+        font-weight: 700;
+        margin: 0 0 2px 0;
+        line-height: 1.2;
+      }
+
+      .instructions-top-bar p {
+        font-size: clamp(0.875rem, 1.2vw, 1rem);
+        color: #555;
+        margin: 0;
+      }
+
+      /* BOX 2 + BOX 3 — side by side row */
+      .instructions-bottom-row {
+        display: flex;
+        flex: 1;
+        align-items: stretch;
+      }
+
+      /* BOX 2 — mascot */
+      .instructions-new-mascot {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: flex-end;
+        padding-top: 1rem;
+        padding-left: 3%;
+      }
+
+      .instructions-new-mascot img {
+        height: clamp(
+          260px,
+          calc(100vh - var(--header-height) - var(--footer-height) - 80px),
+          560px
+        );
+        width: auto;
+        display: block;
+      }
+
+      /* BOX 3 — right content */
+      .instructions-new-right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: clamp(1rem, 3vh, 2rem);
+        padding-top: clamp(1.5rem, 4vh, 3rem);
+        padding-bottom: clamp(1rem, 4vh, 3rem);
+        padding-right: 5%;
+        padding-left: clamp(1rem, 3vw, 2rem);
+      }
+
+      .ready-section-new {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: clamp(0.6rem, 1.5vh, 1rem);
+      }
+
+      .ready-section-new h2 {
+        font-size: 52px;
+        font-weight: 800;
+        margin: 0;
+        text-align: left;
+      }
+
+      .button-group-new {
+        display: flex;
+        gap: clamp(0.75rem, 1.5vw, 1.25rem);
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+
+      .btn-primary-new {
+        background-color: #4a90d9;
+        color: #000;
+        border: none;
+        border-radius: 8px;
+        padding: 18px 48px;
+        font-size: 24px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .btn-primary-new:hover {
+        background-color: #357abd;
+      }
+
+      .btn-outline-new {
+        background-color: #fff;
+        color: #000;
+        border: 2px solid #4a90d9;
+        border-radius: 8px;
+        padding: 18px 48px;
+        font-size: 24px;
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+      }
+
+      .btn-outline-new:hover {
+        border-color: #357abd;
+        color: #357abd;
+      }
+
+      .bee-steps {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(0.8rem, 2vh, 1.25rem);
+      }
+
+      .bee-step {
+        display: flex;
+        align-items: center;
+        gap: clamp(0.75rem, 1.2vw, 1.25rem);
+      }
+
+      .bee-step:nth-child(1) {
+        margin-left: 0;
+      }
+      .bee-step:nth-child(2) {
+        margin-left: clamp(24px, 3vw, 48px);
+      }
+      .bee-step:nth-child(3) {
+        margin-left: clamp(48px, 6vw, 96px);
+      }
+
+      .bee-step img {
+        width: clamp(40px, 4.5vw, 60px);
+        height: clamp(40px, 4.5vw, 60px);
+        object-fit: contain;
+        flex-shrink: 0;
+      }
+
+      .bee-step span {
+        font-size: clamp(0.95rem, 1.4vw, 1.125rem);
+        color: #333;
+        line-height: 1.4;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="main-content with-header">
+      <section class="page active">
+        <div class="page-wrapper">
+          <div class="page-content" style="padding: 0">
+            <!-- BOX 1: full-width top bar -->
+            <div class="instructions-top-bar">
+              <h1>Ready to create a great prompt?</h1>
+              <p>It's as easy as 1, 2, 3!</p>
+            </div>
+
+            <!-- BOX 2 + BOX 3: mascot left, content right -->
+            <div class="instructions-bottom-row">
+              <!-- BOX 2: Mascot -->
+              <div class="instructions-new-mascot">
+                <img src="images/girljumpright.png" alt="PlayWard Mascot" />
+              </div>
+
+              <!-- BOX 3: Right content -->
+              <div class="instructions-new-right">
+                <div class="ready-section-new">
+                  <h2>Ready to start generating?</h2>
+                  <div class="button-group-new">
+                    <button
+                      class="btn-primary-new"
+                      onclick="goToPage('activity-select.html')"
+                    >
+                      Customize prompt
+                    </button>
+                    <button class="btn-outline-new" onclick="quickCreate()">
+                      Quick Create
+                    </button>
+                  </div>
+                </div>
+
+                <div class="bee-steps">
+                  <div class="bee-step">
+                    <img src="images/bee.png" alt="bee" />
+                    <span
+                      >Choose Quick Create feature to access prebuilt prompts,
+                      or select Customized Prompt to personalize the
+                      results.</span
+                    >
+                  </div>
+                  <div class="bee-step">
+                    <img src="images/bee.png" alt="bee" />
+                    <span>Select your theme or customization options.</span>
+                  </div>
+                  <div class="bee-step">
+                    <img src="images/bee.png" alt="bee" />
+                    <span>Create your prompt.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer class="grass-footer">
+            <img src="images/grass.png" alt="" />
+          </footer>
+        </div>
+      </section>
+    </main>
+
+    <script src="shared.js"></script>
+    <script>
+      function quickCreate() {
+        // Reset QC data and go to quick create activity selection
+        localStorage.removeItem("playwardQCData");
+        goToPage("qc-select.html");
+      }
+    </script>
+  </body>
+</html>

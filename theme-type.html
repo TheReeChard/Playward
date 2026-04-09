@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlayWard - Select Theme Type</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+      .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .page.active {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .page-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .page-content {
+        flex: 1;
+      }
+
+      .theme-type-grid {
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        margin-top: 40px;
+      }
+      .theme-type-item {
+        width: 180px;
+        text-align: center;
+      }
+      .theme-type-box {
+        width: 160px;
+        height: 160px;
+        margin: 0 auto 12px;
+      }
+      .theme-type-box img {
+        width: 110px;
+        height: 110px;
+      }
+      .theme-type-label {
+        font-size: 18px;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="main-content with-header">
+      <section class="page active">
+        <div class="page-wrapper">
+          <div class="page-content page-with-sidebar">
+            <div class="dynamic-sidebar" id="dynamic-sidebar">
+              <!-- Dynamic sidebar content -->
+            </div>
+            <div class="page-main">
+              <h1 class="page-title">Select a Theme Type</h1>
+              <p class="page-subtitle">
+                Here you can choose whether you want to use one of our default
+                themes or type in your own custom theme! Select one to move
+                forward.
+              </p>
+
+              <div class="theme-type-grid">
+                <div
+                  class="theme-type-item"
+                  onclick="selectThemeType('default')"
+                >
+                  <div class="theme-type-box">
+                    <img src="images/defaulttheme.png" alt="Default Themes" />
+                  </div>
+                  <span class="theme-type-label">Default Themes</span>
+                </div>
+                <div
+                  class="theme-type-item"
+                  onclick="selectThemeType('custom')"
+                >
+                  <div class="theme-type-box">
+                    <img src="images/customtheme.png" alt="Custom Theme" />
+                  </div>
+                  <span class="theme-type-label">Custom Theme</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="breadcrumb-with-back">
+            <button
+              class="btn btn-outline btn-back"
+              onclick="goToPage('activity-select.html')"
+            >
+              Back
+            </button>
+            <div class="progress-breadcrumb" id="progress-breadcrumb"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="shared.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        generateSidebar("theme-type");
+        generateBreadcrumb("theme-type");
+      });
+
+      function selectThemeType(type) {
+        appData.themeType = type;
+        saveAppData(appData);
+
+        if (type === "default") {
+          goToPage("default-themes.html");
+        } else {
+          goToPage("custom-theme.html");
+        }
+      }
+    </script>
+  </body>
+</html>
