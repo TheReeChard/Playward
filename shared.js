@@ -83,10 +83,12 @@ const medicalIcons = {
   syringe: "images/syringe.png",
   pain: "images/pain.png",
   iv: "images/iv.png",
+  ivcan: "images/ivcan.png",
   surgery: "images/surgery.png",
   halo: "images/halo.png",
   anxiety: "images/anxiety.png",
   ngtube: "images/ngtube.png",
+  mri: "images/mri.png",
 };
 
 // ========================================
@@ -227,10 +229,12 @@ function formatMedicalContext() {
         syringe: "IV/Injections",
         pain: "Pain",
         iv: "IV",
+        ivcan: "IV Cannulation",
         surgery: "Surgery",
         halo: "Halo",
         anxiety: "Anxiety",
         ngtube: "NG Tube",
+        mri: "MRI",
       };
       return names[m] || m;
     })

@@ -12,7 +12,7 @@
     <style>
       .medical-grid-new {
         display: grid;
-        grid-template-columns: repeat(4, 160px);
+        grid-template-columns: repeat(5, 160px);
         justify-content: center;
         gap: 30px 40px;
         margin-bottom: 35px;
@@ -197,7 +197,27 @@
                       <div class="medical-diamond">
                         <img src="images/ngtube.png" alt="NG Tube" />
                       </div>
-                      <span>NG Tube</span>
+                      <span>NG tube</span>
+                    </div>
+                    <div
+                      class="medical-item"
+                      data-medical="ivcan"
+                      onclick="toggleMedical('ivcan')"
+                    >
+                      <div class="medical-diamond">
+                        <img src="images/ivcan.png" alt="IV Cannulation" />
+                      </div>
+                      <span>IV Cannulation</span>
+                    </div>
+                    <div
+                      class="medical-item"
+                      data-medical="mri"
+                      onclick="toggleMedical('mri')"
+                    >
+                      <div class="medical-diamond">
+                        <img src="images/mri.png" alt="MRI" />
+                      </div>
+                      <span>MRI</span>
                     </div>
                   </div>
                 </div>
