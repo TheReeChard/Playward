@@ -174,6 +174,92 @@
         color: #333;
         line-height: 1.4;
       }
+
+      /* ========================================
+         MOBILE — 640px and below
+      ======================================== */
+      @media (max-width: 640px) {
+        /* Tighten the top bar padding */
+        .instructions-top-bar {
+          padding: 1.5rem 5% 0.75rem;
+        }
+
+        .instructions-top-bar h1 {
+          font-size: 1.25rem;
+        }
+
+        .instructions-top-bar p {
+          font-size: 0.875rem;
+        }
+
+        /* Stack mascot above right content */
+        .instructions-bottom-row {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        /* Shrink mascot and center it */
+        .instructions-new-mascot {
+          padding-left: 0;
+          padding-top: 0;
+          justify-content: center;
+          width: 100%;
+        }
+
+        .instructions-new-mascot img {
+          height: 160px;
+        }
+
+        /* Full-width right panel, centered */
+        .instructions-new-right {
+          width: 100%;
+          padding: 1.25rem 5% 1.5rem;
+          gap: 1.25rem;
+          align-items: center;
+        }
+
+        .ready-section-new {
+          align-items: center;
+          width: 100%;
+        }
+
+        /* Scale down the heading */
+        .ready-section-new h2 {
+          font-size: 1.75rem;
+          text-align: center;
+        }
+
+        /* Buttons full-width and stacked */
+        .button-group-new {
+          flex-direction: column;
+          width: 100%;
+          gap: 0.75rem;
+        }
+
+        .btn-primary-new,
+        .btn-outline-new {
+          width: 100%;
+          padding: 14px 24px;
+          font-size: 1rem;
+          text-align: center;
+        }
+
+        /* Remove bee-step stagger on mobile */
+        .bee-step:nth-child(1),
+        .bee-step:nth-child(2),
+        .bee-step:nth-child(3) {
+          margin-left: 0;
+        }
+
+        .bee-step img {
+          width: 32px;
+          height: 32px;
+        }
+
+        .bee-step span {
+          font-size: 0.9rem;
+        }
+      }
     </style>
   </head>
   <body>
