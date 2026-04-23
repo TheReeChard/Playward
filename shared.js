@@ -135,7 +135,7 @@ function goToPage(pageName) {
 // Prompt Templates
 // ========================================
 const promptTemplates = {
-  coloring: `Create a personalized, printable PDF coloring page for a {AGE_GROUP} year old {GENDER} with the theme of {THEME}.
+  coloring: `Create a personalized image of a coloring page for a {AGE_GROUP} year old {GENDER} with the theme of {THEME}.
 
 Activity Requirements:
 - Page Type: Standard Coloring Page
